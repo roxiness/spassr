@@ -1,29 +1,35 @@
 const express = require('express')
 const { ssr } = require('@sveltech/ssr')
 const path = require('path')
-const ssrApp = express()
-const app = express()
 
-const host = process.env.HOST || 'http://localhost'
-const { PORT = 5000 } = process.env
-const SSR_PORT = process.env.SSR_PORT || (PORT + 1)
-const distDir = path.resolve('../../dist')
-const ssrScript = `${distDir}/build/bundle.js`
-const entrypoint = `${distDir}/__app.html`
+module.exports.startServers = function (options) {
+    const { spaPort, ssrPort, serveSpa, serveSsr } = { ...options }
+    
+    options.host = `http://${options.host}`
+    options.app = path.resolve(options.distDir, options.app)
+    options.entrypoint = path.resolve(options.distDir, options.entrypoint)
+    
 
+    if (serveSpa) startServer({ ...options, port: spaPort, mode: 'spa' })
+    if (serveSsr) startServer({ ...options, port: ssrPort, mode: 'ssr' })
+}
 
+function startServer(options) {
+    const { distDir, host, port, mode } = options
+    const app = express()
+    const fallback = mode === 'ssr' ? sendSSRRender : sendEntryPoint
 
-startServer(app, sendEntryPoint, 'SPA only', PORT)
-startServer(ssrApp, sendSSRRender, 'SPA & SSR', SSR_PORT)
-
-function startServer(app, fallback, name, port) {
     app.use(express.static(distDir))
-    app.get('*', fallback)
-    console.log(`Serving ${name} on ${host}:${port}`)
+    app.get('*', fallback.bind({ options }))
+    console.log(`Serving ${mode} on ${host}:${port}`)
     app.listen(port)
 }
 
-async function sendEntryPoint(req, res) { res.sendFile(entrypoint) }
+async function sendEntryPoint(req, res) {
+    const { entrypoint } = this.options
+    res.sendFile(entrypoint)
+}
 async function sendSSRRender(req, res) {
-    res.send(await ssr(entrypoint, ssrScript, req.url, { host }))
+    const { entrypoint, app, host } = this.options
+    res.send(await ssr(entrypoint, app, req.url, { host }))
 }

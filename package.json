@@ -1,7 +1,8 @@
 {
-  "name": "ssr-server",
-  "version": "1.0.0",
+  "name": "spassr",
+  "version": "1.0.1",
   "main": "index.js",
+  "bin": "cli.js",
   "scripts": {
     "start": "node server.js"
   },
@@ -10,15 +11,17 @@
   "license": "ISC",
   "dependencies": {
     "@sveltech/ssr": "0.0.9",
+    "commander": "^5.0.0",
     "express": "^4.17.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sveltech/ssr-server.git"
+    "url": "git+https://github.com/sveltech/spassr.git"
   },
   "bugs": {
-    "url": "https://github.com/sveltech/ssr-server/issues"
+    "url": "https://github.com/sveltech/spassr/issues"
   },
-  "homepage": "https://github.com/sveltech/ssr-server#readme",
+  "homepage": "https://github.com/sveltech/spassr#readme",
+  "devDependencies": {},
   "description": ""
 }
