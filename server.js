@@ -1,19 +1,32 @@
 const express = require('express')
 const { ssr } = require('@sveltech/ssr')
 const path = require('path')
+const { defaults } = require('./config')
 
-module.exports.startServers = function (options) {
-    const { spaPort, ssrPort, serveSpa, serveSsr } = { ...options }
+/** @typedef {import('./config')['defaults']} Config */
+
+/**
+ * @param {Partial<Config>} _options 
+ */
+module.exports.spassr = function (_options) {
     
+    const options = { ...defaults, ..._options }
+    const { spaPort, ssrPort, serveSpa, serveSsr } = options
+
     options.host = `http://${options.host}`
     options.app = path.resolve(options.distDir, options.app)
     options.entrypoint = path.resolve(options.distDir, options.entrypoint)
-    
 
     if (serveSpa) startServer({ ...options, port: spaPort, mode: 'spa' })
     if (serveSsr) startServer({ ...options, port: ssrPort, mode: 'ssr' })
 }
 
+
+
+/**
+ * 
+ * @param { Config } options 
+ */
 function startServer(options) {
     const { distDir, host, port, mode } = options
     const app = express()
