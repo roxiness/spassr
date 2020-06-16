@@ -1,7 +1,7 @@
 {
   "name": "spassr",
   "version": "1.1.0",
-  "main": "index.js",
+  "main": "server.js",
   "bin": "cli.js",
   "scripts": {
     "start": "node server.js"
