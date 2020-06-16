@@ -7,6 +7,7 @@ const defaults = {
     ssrPort: "5005",
     serveSpa: false,
     serveSsr: false,
+    silent: false,
 }
 
 module.exports.defaults =  defaults 

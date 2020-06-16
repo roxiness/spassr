@@ -9,7 +9,6 @@ const { defaults } = require('./config')
  * @param {Partial<Config>} _options 
  */
 module.exports.spassr = function (_options) {
-    
     const options = { ...defaults, ..._options }
     const { spaPort, ssrPort, serveSpa, serveSsr } = options
 
@@ -28,13 +27,13 @@ module.exports.spassr = function (_options) {
  * @param { Config } options 
  */
 function startServer(options) {
-    const { distDir, host, port, mode } = options
+    const { distDir, host, port, mode, silent } = options
     const app = express()
     const fallback = mode === 'ssr' ? sendSSRRender : sendEntryPoint
 
     app.use(express.static(distDir))
     app.get('*', fallback.bind({ options }))
-    console.log(`[spassr] Serving ${mode} on ${host}:${port}`)
+    if (!silent) console.log(`[spassr] Serving ${mode} on ${host}:${port}`)
     app.listen(port)
 }
 

@@ -14,6 +14,7 @@ program
     .option('-s, --serve-ssr', 'serve SSR', defaults.serveSsr)
     .option('-B, --spa-port [port]', 'port serving spa app', defaults.spaPort)
     .option('-S, --ssr-port [port]', 'port serving SSR app', defaults.ssrPort)
+    .option('-q, --silent', 'port serving SSR app', defaults.silent)
 
     .action(_options => {
         const options = _options.opts()
