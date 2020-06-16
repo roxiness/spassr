@@ -34,7 +34,7 @@ function startServer(options) {
 
     app.use(express.static(distDir))
     app.get('*', fallback.bind({ options }))
-    console.log(`Serving ${mode} on ${host}:${port}`)
+    console.log(`[spassr] Serving ${mode} on ${host}:${port}`)
     app.listen(port)
 }
 
