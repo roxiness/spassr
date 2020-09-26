@@ -1,47 +1,38 @@
+/// <reference path="./config.js" />
+
 const express = require('express')
-const { ssr } = require('@sveltech/ssr')
-const path = require('path')
-const { defaults } = require('./config')
+const { ssr: ssrServer } = require('@roxi/ssr')
+const defaults = require('./config')
 
-/** @typedef {import('./config')['defaults']} Config */
+/** @param {Partial<defaults.Config>} options  */
+module.exports.spassr = async function (options) {
+    let {
+        assetsDir,
+        port,
+        silent,
+        ssr,
+        entrypoint,
+        script,
+        host,
+        inlineDynamicImports
+    } = { ...defaults, ...options }
 
-/**
- * @param {Partial<Config>} _options 
- */
-module.exports.spassr = function (_options) {
-    const options = { ...defaults, ..._options }
-    const { spaPort, ssrPort, serveSpa, serveSsr } = options
+    if (!Array.isArray(assetsDir)) {
+        /** @type {string[]} */
+        (assetsDir) = assetsDir.split(',')
+    }
 
-    options.host = `http://${options.host}`
-    options.app = path.resolve(options.distDir, options.app)
-    options.entrypoint = path.resolve(options.distDir, options.entrypoint)
+    const server = express();
+    assetsDir.forEach(dir => server.use(express.static(dir)))
 
-    if (serveSpa) startServer({ ...options, port: spaPort, mode: 'spa' })
-    if (serveSsr) startServer({ ...options, port: ssrPort, mode: 'ssr' })
+    if (!ssr)
+        server.get('*', (req, res) =>
+            res.sendFile(entrypoint))
+    else
+        server.get('*', async (req, res) =>
+            res.send(await ssrServer(entrypoint, script, req.url, { host, inlineDynamicImports })))
+
+    if (!silent) console.log(`[spassr] Serving ${ssr ? 'ssr' : 'spa'} on ${host}:${port}`)
+    server.listen(port)
 }
 
-
-
-/**
- * 
- * @param { Config } options 
- */
-function startServer(options) {
-    const { distDir, host, port, mode, silent } = options
-    const app = express()
-    const fallback = mode === 'ssr' ? sendSSRRender : sendEntryPoint
-
-    app.use(express.static(distDir))
-    app.get('*', fallback.bind({ options }))
-    if (!silent) console.log(`[spassr] Serving ${mode} on ${host}:${port}`)
-    app.listen(port)
-}
-
-async function sendEntryPoint(req, res) {
-    const { entrypoint } = this.options
-    res.sendFile(entrypoint)
-}
-async function sendSSRRender(req, res) {
-    const { entrypoint, app, host } = this.options
-    res.send(await ssr(entrypoint, app, req.url, { host }))
-}
