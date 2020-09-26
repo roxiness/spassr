@@ -3,6 +3,7 @@
 const express = require('express')
 const { ssr: ssrServer } = require('@roxi/ssr')
 const defaults = require('./config')
+const { resolve } = require('path')
 
 /** @param {Partial<defaults.Config>} options  */
 module.exports.spassr = async function (options) {
@@ -27,7 +28,7 @@ module.exports.spassr = async function (options) {
 
     if (!ssr)
         server.get('*', (req, res) =>
-            res.sendFile(entrypoint))
+            res.sendFile(resolve(entrypoint)))
     else
         server.get('*', async (req, res) =>
             res.send(await ssrServer(entrypoint, script, req.url, { host, inlineDynamicImports })))
