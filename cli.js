@@ -6,11 +6,12 @@ const defaults = require('./config')
 
 program
     .option('-d, --debug', 'extra debugging')
-    .option('-h, --host [path]', 'host', defaults.host)
-    .option('-d, --assets-dir [path]', 'path to distributables', defaults.assetsDir)
-    .option('-a, --app [path]', 'path from publish dir to app', defaults.app)
-    .option('-e, --entrypoint [path]', 'path from publish dir to entrypoint', defaults.entrypoint)
-    .option('-p, --port [port]', 'port serving spa app', defaults.port)
+    .option('-h, --host <path>', 'host', defaults.host)
+    .option('-d, --assets-dir <path>', 'path to distributables', defaults.assetsDir.toString())
+    .option('-s, --script <path>', 'path to app script', defaults.script)
+    .option('-e, --entrypoint <path>', 'path from publish dir to entrypoint', defaults.entrypoint)
+    .option('-p, --port <port>', 'port serving spa app', defaults.port.toString())
+    .option('-t, --timeout <number>', 'max time for a page to render', defaults.timeout.toString())
     .option('-q, --silent', 'silent console logs', defaults.silent)
 
     .action(_options => {

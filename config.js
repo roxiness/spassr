@@ -11,6 +11,7 @@
  * @prop {boolean} ssr                  - enable SSR for routes not resolved in assetsDir.
  * @prop {boolean} silent               - quiet console.log.
  * @prop {boolean} inlineDynamicImports - required for apps with dynamic imports.
+ * @prop {number} timeout               - max time for a page to render.
  */
 
 
@@ -23,7 +24,8 @@ const config = {
     port: "5000",
     ssr: false,
     silent: false,
-    inlineDynamicImports: false
+    inlineDynamicImports: false,
+    timeout: 5000
 }
 
 module.exports = config

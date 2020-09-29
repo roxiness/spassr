@@ -15,7 +15,8 @@ module.exports.spassr = async function (options) {
         entrypoint,
         script,
         host,
-        inlineDynamicImports
+        inlineDynamicImports,
+        timeout
     } = { ...defaults, ...options }
 
     if (!Array.isArray(assetsDir)) {
@@ -31,7 +32,7 @@ module.exports.spassr = async function (options) {
             res.sendFile(resolve(entrypoint)))
     else
         server.get('*', async (req, res) =>
-            res.send(await ssrServer(entrypoint, script, req.url, { host, inlineDynamicImports })))
+            res.send(await ssrServer(entrypoint, script, req.url, { host, inlineDynamicImports, timeout })))
 
     if (!silent) console.log(`[spassr] Serving ${ssr ? 'ssr' : 'spa'} on ${host}:${port}`)
     server.listen(port)

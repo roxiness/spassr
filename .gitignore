@@ -2,3 +2,4 @@
 /dist/
 .DS_Store
 **/.history
+**/__roxi-ssr-bundle.js
