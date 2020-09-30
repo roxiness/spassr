@@ -13,6 +13,7 @@ program
     .option('-p, --port <port>', 'port serving spa app', defaults.port.toString())
     .option('-t, --timeout <number>', 'max time for a page to render', defaults.timeout.toString())
     .option('-q, --silent', 'silent console logs', defaults.silent)
+    .option('-r, --ssr', 'serve SSR', defaults.ssr)
 
     .action(_options => {
         spassr(_options.opts())
