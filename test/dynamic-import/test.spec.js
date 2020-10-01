@@ -10,10 +10,12 @@ test.before(async t => {
         assetsDir: [],
         entrypoint: resolve(__dirname, 'dist/index.html'),
         script: resolve(__dirname, 'dist/main.js'),
-        inlineDynamicImports: true,
         port: 5000,
         ssr: true,
-        timeout: 1000
+        ssrOptions: {
+            inlineDynamicImports: true,
+            timeout: 1000,
+        }
     })
 })
 
