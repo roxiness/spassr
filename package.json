@@ -4,7 +4,7 @@
   "main": "src/server.js",
   "bin": "src/cli.js",
   "scripts": {
-    "build": "tsc && documentation readme src/server.js -s API --external tossr --resolve node",
+    "build": "tsc && documentation readme src/server.js -s API && node ./postBuild",
     "start": "node server.js",
     "test": "ava"
   },

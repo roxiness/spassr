@@ -70,3 +70,8 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 #### config
 
 Type: [Config](#config)
+
+
+---
+
+<a href="https://www.freepik.com/vectors/business">Business vector created by teravector - www.freepik.com</a>
