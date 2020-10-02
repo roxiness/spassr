@@ -1,17 +1,18 @@
 {
   "name": "spassr",
   "version": "2.1.2",
-  "main": "server.js",
-  "bin": "cli.js",
+  "main": "src/server.js",
+  "bin": "src/cli.js",
   "scripts": {
+    "build": "tsc && documentation readme src/server.js -s API --external tossr --resolve node",
     "start": "node server.js",
     "test": "ava"
   },
   "keywords": [],
   "author": "jakobrosenberg@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@roxi/ssr": "^0.2.0",
+    "tossr": "^1.0.1",
     "commander": "^5.0.0",
     "configent": "^1.0.2",
     "express": "^4.17.1"

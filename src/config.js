@@ -1,7 +1,6 @@
+const tossr = require('tossr')
+
 /**
- * @typedef {string} Path
- * @typedef {string} Script
- * 
  * @typedef {object} Config
  * @prop {string|string[]} assetsDir                      - folders with static content to be served.
  * @prop {string} entrypoint                              - HTML template, eg. assets/index.html.
@@ -9,9 +8,14 @@
  * @prop {string|number} port                             - port to serve on.
  * @prop {boolean} ssr                                    - enable SSR for routes not resolved in assetsDir.
  * @prop {boolean} silent                                 - quiet console.log.
- * @prop {Partial<import('@roxi/ssr').Config>} ssrOptions - options to pass to ssr
+ * @prop {Partial<tossr.Config>} ssrOptions                  - options to pass to ssr
  */
 
+  /**
+ * Called before/after the app script is evaluated
+ * @callback Eval
+ * @param {object} dom The DOM object
+ * */
 
 /** @type {Config} */
 const config = {
