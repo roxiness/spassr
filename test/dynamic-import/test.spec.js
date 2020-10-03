@@ -1,6 +1,6 @@
 const test = require('ava').default
 const { removeSync } = require('fs-extra')
-const { spassr } = require('../../src/server')
+const { spassr } = require('../../src/spassr')
 const { resolve } = require('path')
 const fetch = require('node-fetch').default
 

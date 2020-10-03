@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/// <reference path="../ssr/index.d.ts" />
 declare module "config" {
     export = config;
     /**
@@ -56,7 +57,7 @@ declare module "config" {
      */
     type Eval = (dom: object) => any;
 }
-declare module "server" {
+declare module "spassr" {
     export function spassr(options: Partial<import("config").Config>): Promise<void>;
 }
 declare module "cli" {

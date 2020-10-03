@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const { spassr } = require('./server')
+const { spassr } = require('./spassr')
 const { configent } = require('configent')
 const defaults = configent('spassr', require('./config'))
 

@@ -1,11 +1,10 @@
 {
   "name": "spassr",
   "version": "2.1.3",
-  "main": "src/server.js",
+  "main": "src/spassr.js",
   "bin": "src/cli.js",
   "scripts": {
-    "build": "tsc && documentation readme src/server.js -s API && node ./postBuild",
-    "start": "node server.js",
+    "build": "tsc && documentation readme src/spassr.js -s API && node ./postBuild",
     "test": "ava"
   },
   "keywords": [],
