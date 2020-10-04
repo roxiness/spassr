@@ -1,8 +1,8 @@
-const express = require('express')
 const { tossr } = require('tossr')
-const config = require('./config')
 const { resolve } = require('path')
 const { configent } = require('configent')
+const express = require('express')
+const config = require('./config')
 
 /** 
  * @param {Partial<config.Config>} options 
@@ -20,13 +20,15 @@ module.exports.spassr = async function (options) {
         ssrOptions = {}
     } = options
 
-    if (!Array.isArray(assetsDir)) {
-        /** @type {string[]} */
-        (assetsDir) = assetsDir.split(',')
+    if (!await isPortFree(port)) {
+        console.log(`[spassr] port already taken ${port}`)
+        return
     }
 
     const server = express();
-    assetsDir.forEach(dir => server.use(express.static(dir)))
+
+    const assetsDirs = Array.isArray(assetsDir) ? assetsDir : assetsDir.split(',')
+    assetsDirs.forEach(dir => server.use(express.static(dir)))
 
     if (!ssr)
         server.get('*', (req, res) =>
@@ -36,5 +38,15 @@ module.exports.spassr = async function (options) {
             res.send(await tossr(entrypoint, script, req.url, ssrOptions)))
 
     if (!silent) console.log(`[spassr] Serving ${ssr ? 'ssr' : 'spa'} on localhost:${port}`)
-    server.listen(port)
+    return server.listen(port)
 }
+
+
+function isPortFree(port) {
+    return new Promise((resolve, reject) => {
+        const tester = require('net').createServer()
+            .once('error', err => (err['code'] == 'EADDRINUSE' ? resolve(false) : reject(err)))
+            .once('listening', () => tester.once('close', () => resolve(true)).close())
+            .listen(port)
+    })
+} 

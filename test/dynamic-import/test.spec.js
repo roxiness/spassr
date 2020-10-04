@@ -21,7 +21,7 @@ test.before(async t => {
 
 test('dynamic imports', async t => {
     const res = await fetch('http://127.0.0.1:5000').then(res => res.text())    
-    const expected =`<html><head><script>dom.window.__ssrRendered = true</script></head><body>\n    <div id="app"><div id="status">imported</div></div>\n  \n\n</body></html>`
+    const expected =`<html><head><script>window.__ssrRendered = true</script></head><body>\n    <div id="app"><div id="status">imported</div></div>\n  \n\n</body></html>`
     t.log('RES', res)
     t.is(res, expected)
 
@@ -30,6 +30,6 @@ test('dynamic imports', async t => {
 test('timeouts', async t => {
     const res2 = await fetch('http://127.0.0.1:5000/timeout').then(res => res.text())    
     t.log('RES2', res2)
-    const expected2 =`<html><head><script>dom.window.__ssrRendered = true</script></head><body>\n    <div id="app"><div id="status">imported</div></div>\n  \n\n</body></html>`
+    const expected2 =`<html><head><script>window.__ssrRendered = true</script></head><body>\n    <div id="app"><div id="status">imported</div></div>\n  \n\n</body></html>`
     t.is(res2, expected2)
 })

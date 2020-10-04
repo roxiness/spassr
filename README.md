@@ -26,7 +26,6 @@ For configuration options, refer to the API below.
 
 -   [spassr](#spassr)
     -   [Parameters](#parameters)
--   [assetsDir](#assetsdir)
 -   [Config](#config)
     -   [Properties](#properties)
 -   [Eval](#eval)
@@ -38,10 +37,6 @@ For configuration options, refer to the API below.
 ##### Parameters
 
 -   `options` **Partial&lt;config.Config>** \*
-
-#### assetsDir
-
-Type: [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>
 
 #### Config
 
