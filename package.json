@@ -11,7 +11,7 @@
   "author": "jakobrosenberg@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "tossr": "^1.1.0",
+    "tossr": "^1.3.0",
     "commander": "^5.0.0",
     "configent": "^1.0.3",
     "express": "^4.17.1"
