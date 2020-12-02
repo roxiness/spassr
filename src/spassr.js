@@ -8,7 +8,7 @@ const config = require('./config')
  * @param {Partial<config.Config>} options 
  **/
 module.exports.spassr = async function (options) {
-    options = configent('spassr', require('./config'), options)
+    options = configent(require('./config'), options, { useDetectDefaults: true })
 
     let {
         assetsDir,

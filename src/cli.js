@@ -3,11 +3,13 @@
 const program = require('commander')
 const { spassr } = require('./spassr')
 const { configent } = require('configent')
-const defaults = configent('spassr', require('./config'))
+const defaults = configent(require('./config'), {}, { useDetectDefaults: true })
+
+const toArray = x => x.split(/[, ]/)
 
 program
     .option('-d, --debug', 'extra debugging')
-    .option('-d, --assets-dir <path>', 'path to distributables', defaults.assetsDir.toString())
+    .option('-a, --assets-dir <path>', 'path to distributables', toArray, defaults.assetsDir)
     .option('-s, --script <path>', 'path to app script', defaults.script)
     .option('-e, --entrypoint <path>', 'path from publish dir to entrypoint', defaults.entrypoint)
     .option('-p, --port <port>', 'port serving spa app', defaults.port.toString())
