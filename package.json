@@ -1,6 +1,6 @@
 {
   "name": "spassr",
-  "version": "2.1.6",
+  "version": "2.2.0-0",
   "main": "src/spassr.js",
   "bin": "src/cli.js",
   "scripts": {
