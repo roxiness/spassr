@@ -12,7 +12,7 @@ module.exports = {
         }
 
         // merge with the app field from package.json, if it exists
-        const config = { ...defaults, ...pkgjson.config }
+        const config = { ...defaults, ...pkgjson.options }
         
         return {
             // prioritize 'dist' over 'assets', in case asset has been transformed
