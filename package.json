@@ -1,8 +1,10 @@
 {
   "name": "spassr",
-  "version": "2.2.0-0",
+  "version": "2.2.0",
   "main": "src/spassr.js",
-  "bin": "src/cli.js",
+  "bin": {
+    "spassr": "src/cli.js"
+  },
   "scripts": {
     "build": "tsc && documentation readme src/spassr.js -s API && node ./postBuild",
     "test": "ava"
