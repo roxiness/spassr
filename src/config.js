@@ -11,11 +11,11 @@ const tossr = require('tossr')
  * @prop {Partial<tossr.Config>} ssrOptions                  - options to pass to ssr
  */
 
-  /**
- * Called before/after the app script is evaluated
- * @callback Eval
- * @param {object} dom The DOM object
- * */
+/**
+* Called before/after the app script is evaluated
+* @callback Eval
+* @param {object} dom The DOM object
+* */
 
 /** @type {Config} */
 const config = {
