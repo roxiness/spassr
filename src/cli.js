@@ -3,7 +3,7 @@
 const program = require('commander')
 const { spassr } = require('./spassr')
 const { configent } = require('configent')
-const defaults = configent(require('./config'), {}, { useDetectDefaults: true })
+const defaults = configent(require('./config'), {}, { useDetectDefaults: true, module })
 
 const toArray = x => x.split(/[, ]/)
 
