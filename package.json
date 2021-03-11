@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^6",
-    "configent": "^2.1.4",
+    "configent": "^2.2.0",
     "express": "^4.17.1",
     "tossr": "^1.4.1"
   },
