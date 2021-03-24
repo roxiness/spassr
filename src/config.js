@@ -8,7 +8,8 @@ const tossr = require('tossr')
  * @prop {string|number} port                             - port to serve on.
  * @prop {boolean} ssr                                    - enable SSR for routes not resolved in assetsDir.
  * @prop {boolean} silent                                 - quiet console.log.
- * @prop {Partial<tossr.Config>} ssrOptions                  - options to pass to ssr
+ * @prop {Partial<tossr.Config>} ssrOptions               - options to pass to SSR.
+ * @prop {Function} middleware                            - function to customize SPA server. 
  */
 
 /**
@@ -25,7 +26,8 @@ const config = {
     port: "5000",
     ssr: false,
     silent: false,
-    ssrOptions: {}
+    ssrOptions: {},
+    middleware: (server) => void 0
 }
 
 module.exports = config
