@@ -30,9 +30,12 @@ module.exports.spassr = async function (options) {
     const assetsDirs = Array.isArray(assetsDir) ? assetsDir : assetsDir.split(',')
     assetsDirs.forEach(dir => server.use(express.static(dir)))
 
-    if (!ssr)
+    if (!ssr) {
+        if (options.middleware)
+            options.middleware(server)
         server.get('*', (req, res) =>
             res.sendFile(resolve(entrypoint)))
+    }
     else
         server.get('*', async (req, res) =>
             res.send(await tossr(entrypoint, script, req.url, ssrOptions)))

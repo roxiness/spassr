@@ -50,7 +50,9 @@ Type: [object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 -   `port` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** port to serve on.
 -   `ssr` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** enable SSR for routes not resolved in assetsDir.
 -   `silent` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** quiet console.log.
--   `ssrOptions` **Partial&lt;tossr.Config>** options to pass to ssr
+-   `middleware` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function)** function to customize SPA server (<small>_Not available in CLI_</small>).
+-   `ssrOptions` **Partial&lt;tossr.Config>** options to pass to ssr.
+
 
 #### Eval
 
