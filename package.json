@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sveltech/spassr.git"
+    "url": "git+https://github.com/roxiness/spassr.git"
   },
   "bugs": {
-    "url": "https://github.com/sveltech/spassr/issues"
+    "url": "https://github.com/roxiness/spassr/issues"
   },
-  "homepage": "https://github.com/sveltech/spassr#readme",
+  "homepage": "https://github.com/roxiness/spassr#readme",
   "description": "",
   "devDependencies": {
     "ava": "^3.12.1",
